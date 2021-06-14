@@ -1,0 +1,58 @@
+server:
+  port: 8082
+
+spring:
+  profiles:
+    active: dev
+---
+# --- creates profile . So, in this we have 4 profiles
+spring:
+  profiles: dev
+  datasource:
+    driverClassName: org.h2.Driver
+    password: password
+    url: jdbc:h2:mem:dcbapp
+    userName: sa
+  h2:
+    console:
+      enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: "env,beans"
+# here jmx can be also used in the place of web
+welcome:
+  message: Welcome to hello world!!!
+---
+spring:
+  profiles: qa
+  datasource:
+    driverClassName: org.h2.Driver
+    password: password
+    url: jdbc:h2:mem:dcbapp-qa
+    userName: sa
+  h2:
+    console:
+      enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+welcome:
+  message: Welcome to hello world!!!
+---
+spring:
+  profiles: prod
+  datasource:
+    driverClassName: org.h2.Driver
+    password: password
+    url: jdbc:h2:mem:dcbapp-prod
+    userName: sa
+  h2:
+    console:
+      enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
